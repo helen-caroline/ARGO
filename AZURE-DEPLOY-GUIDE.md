@@ -63,7 +63,7 @@ helm version
 
 ```powershell
 # Navegar para o projeto
-cd "C:\Users\Helen\Documents\Projetos\ARGO\devops-challenge"
+cd "techmart-catalog-api"
 
 # Executar scripts em ordem:
 

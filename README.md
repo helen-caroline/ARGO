@@ -100,7 +100,7 @@ graph TB
 ## 📁 Estrutura do Projeto
 
 ```
-devops-challenge/
+techmart-catalog-api/
 ├── 📱 app/                          # Aplicação
 │   ├── 🐳 Dockerfile               # Multi-stage Docker build
 │   ├── 📄 .dockerignore            # Arquivos ignorados no build
@@ -112,6 +112,7 @@ devops-challenge/
 │   ├── 📝 variables.tf             # Variáveis de entrada
 │   ├── 📊 outputs.tf               # Outputs do Terraform
 │   ├── 📋 terraform.tfvars.example # Exemplo de variáveis
+│   ├── 📋 terraform.tfvars.economico # Configuração econômica
 │   └── 📖 README.md                # Documentação do Terraform
 ├── 📦 helm/                        # Chart Helm
 │   ├── 📄 Chart.yaml               # Metadados do chart
@@ -123,7 +124,14 @@ devops-challenge/
 │       ├── 🌍 ingress.yaml         # Ingress Controller
 │       ├── 🔒 networkpolicy.yaml   # Network Policy
 │       └── 🔧 _helpers.tpl         # Helpers do Helm
+├── 📜 scripts/                     # Scripts de automação
+│   ├── 🔧 01-setup-azure.ps1      # Configuração inicial do Azure
+│   ├── 🏗️ 02-deploy-infrastructure.ps1  # Deploy da infraestrutura
+│   ├── 🚀 03-deploy-application.ps1     # Deploy da aplicação
+│   └── 🧹 04-cleanup.ps1           # Limpeza de recursos
 ├── 🔄 azure-pipelines.yml          # Pipeline CI/CD
+├── 📖 AZURE-DEPLOY-GUIDE.md        # Guia de deploy no Azure
+├── 📄 LICENSE                      # Licença do projeto
 └── 📖 README.md                    # Este arquivo
 ```
 
@@ -145,7 +153,7 @@ Certifique-se de ter instalado:
 ```bash
 # Clone o repositório
 git clone <seu-repo>
-cd devops-challenge
+cd techmart-catalog-api
 
 # Build da imagem Docker
 docker build -t devops-challenge-app ./app
@@ -212,6 +220,29 @@ kubectl get pods -n devops-challenge
 kubectl get services -n devops-challenge
 ```
 
+### 4. 🛠️ Deploy Automatizado com Scripts
+
+Para um deploy mais rápido e automatizado, use os scripts PowerShell disponíveis:
+
+```powershell
+# No Windows PowerShell
+cd scripts
+
+# 1. Configuração inicial do Azure (primeira vez apenas)
+.\01-setup-azure.ps1
+
+# 2. Deploy da infraestrutura
+.\02-deploy-infrastructure.ps1
+
+# 3. Deploy da aplicação
+.\03-deploy-application.ps1
+
+# 4. Limpeza (quando necessário)
+.\04-cleanup.ps1
+```
+
+> 💡 **Dica:** Verifique o [Guia de Deploy no Azure](AZURE-DEPLOY-GUIDE.md) para instruções detalhadas sobre configuração econômica e troubleshooting.
+
 ## 📖 Guias Detalhados
 
 ### 🏗️ [Guia do Terraform](terraform/README.md)
@@ -219,6 +250,12 @@ kubectl get services -n devops-challenge
 - Recursos provisionados
 - Comandos úteis
 - Troubleshooting
+
+### ☁️ [Guia de Deploy no Azure](AZURE-DEPLOY-GUIDE.md)
+- Deploy automatizado com scripts
+- Configuração econômica
+- Passo a passo completo
+- Troubleshooting específico do Azure
 
 ### 📦 [Guia do Helm](helm/README.md)
 - Estrutura do chart
